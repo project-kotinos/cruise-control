@@ -1,0 +1,18 @@
+build_targets:
+- commands:
+  - chmod +x ./gradlew
+  - ./gradlew --no-daemon clean javadoc
+  - ./gradlew --max-workers=1 --no-daemon analyze
+  - ./gradlew --no-daemon -PmaxParallelForks=1 build
+  container:
+    image: yourbase/yb_ubuntu:18.04
+  name: default
+
+ci:
+  builds:
+  - build_target: default
+    name: default
+dependencies:
+  build:
+  - java:11.0.6
+  - gradle:6.5.1
