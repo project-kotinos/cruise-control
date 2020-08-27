@@ -3,7 +3,8 @@ build_targets:
   - chmod +x ./gradlew
   - ./gradlew --no-daemon clean javadoc
   - ./gradlew --max-workers=1 --no-daemon analyze
-  - ./gradlew --no-daemon -PmaxParallelForks=1 build
+  #- ./gradlew --no-daemon -PmaxParallelForks=1 build
+  - ./gradlew --no-daemon --debug --init-script ./yourbase.gradle -PmaxParallelForks=1 build
   container:
     image: yourbase/yb_ubuntu:18.04
   name: default
